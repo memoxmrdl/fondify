@@ -4,5 +4,9 @@
   %p= @project.title
   %p= @project.short_description
   %p= @project.description
+
+  = simple_form_for [:admins, @project, Notification.new] do |f|
+    = f.input :message
+    = f.button :submit
 - else
   = link_to 'Moderar este proyecto', admins_project_take_path(@project), method: :create

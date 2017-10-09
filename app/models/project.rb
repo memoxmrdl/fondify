@@ -3,6 +3,7 @@ class Project < ActiveRecord::Base
 
   IMAGE_DEFAULT_STYLES = { thumb: '64x64#', small: '470x470#' }
 
+  has_many :notifications
   belongs_to :user
   belongs_to :admin
 
@@ -18,6 +19,8 @@ class Project < ActiveRecord::Base
   validates_attachment_content_type :image, content_type: %w(image/jpeg image/jpg image/png)
 
   scope :without_admin, -> { where(admin: nil) }
+
+  before_update :updates, if: :project_attrs_changed?
 
   def paperclip_set_default_url
     ActionController::Base.helpers.asset_url('missing.png')
@@ -45,7 +48,18 @@ class Project < ActiveRecord::Base
 
     event :updates do
       transitions from: [:wait_comments, :with_comments, :accepted],
-                  to: :wait_comments
+                  to: :wait_comments,
+                  after: :update_notifications!
     end
+  end
+
+  private
+
+  def update_notifications!
+    notifications.update_all(updated: true)
+  end
+
+  def project_attrs_changed?
+    changed.any?{ |attr| ['title', 'short_description', 'description'].include?(attr) }
   end
 end
