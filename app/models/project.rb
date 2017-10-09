@@ -3,5 +3,5 @@ class Project < ActiveRecord::Base
 
   validates :title,
             :description,
-            :short_description
+            :short_description, presence: true
 end
