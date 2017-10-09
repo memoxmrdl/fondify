@@ -7,4 +7,8 @@ Rails.application.routes.draw do
   namespace :users do
     resources :projects
   end
+
+  namespace :admins do
+    resources :projects
+  end
 end

@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
     if current_user
       users_projects_path
     elsif current_admin
-      root_path
+      admins_projects_path
     end
   end
 end
