@@ -1,10 +1,9 @@
 .projects
-  = link_to 'New project', new_users_project_path
   %h2 Projects
   %table
     %thead
+      %th ID
       %th Title
       %th Short description
       %th description
-      %th Status
     %tbody= render @projects

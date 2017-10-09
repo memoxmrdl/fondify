@@ -1,0 +1,14 @@
+%h2 Project
+
+- if @project.admin.present?
+  %p= link_to 'Aceptar proyecto', admins_project_accept_path(@project), method: :create
+
+  %p= @project.title
+  %p= @project.short_description
+  %p= @project.description
+
+  = simple_form_for [:admins, @project, Notification.new] do |f|
+    = f.input :message
+    = f.button :submit
+- else
+  = link_to 'Moderar este proyecto', admins_project_take_path(@project), method: :create

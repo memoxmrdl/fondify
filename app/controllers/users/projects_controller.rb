@@ -6,6 +6,7 @@ class Users::ProjectsController < Users::BaseController
   end
 
   def show
+    @notifications = @project.notifications.without_updated
   end
 
   def new

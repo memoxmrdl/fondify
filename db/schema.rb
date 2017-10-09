@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171009203802) do
+ActiveRecord::Schema.define(version: 20171009221821) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,18 @@ ActiveRecord::Schema.define(version: 20171009203802) do
   add_index "admins", ["email"], name: "index_admins_on_email", unique: true, using: :btree
   add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true, using: :btree
 
+  create_table "notifications", force: :cascade do |t|
+    t.integer  "admin_id"
+    t.integer  "project_id"
+    t.text     "message"
+    t.boolean  "updated",    default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  add_index "notifications", ["admin_id"], name: "index_notifications_on_admin_id", using: :btree
+  add_index "notifications", ["project_id"], name: "index_notifications_on_project_id", using: :btree
+
   create_table "projects", force: :cascade do |t|
     t.string   "title"
     t.string   "short_description"
@@ -46,8 +58,10 @@ ActiveRecord::Schema.define(version: 20171009203802) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.integer  "status",             default: 0
+    t.integer  "admin_id"
   end
 
+  add_index "projects", ["admin_id"], name: "index_projects_on_admin_id", using: :btree
   add_index "projects", ["user_id"], name: "index_projects_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
