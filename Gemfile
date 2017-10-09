@@ -14,6 +14,7 @@ gem 'devise'
 gem 'haml-rails'
 gem 'simple_form'
 gem 'paperclip', '~> 5.0.0'
+gem 'aasm'
 
 group :development, :test do
   gem 'byebug'
