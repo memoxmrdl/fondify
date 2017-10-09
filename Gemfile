@@ -12,6 +12,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'devise'
 gem 'haml-rails'
+gem 'simple_form'
 
 group :development, :test do
   gem 'byebug'
