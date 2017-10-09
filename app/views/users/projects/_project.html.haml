@@ -1,0 +1,7 @@
+%tr
+  %td= project.title
+  %td= project.short_description
+  %td= project.description
+  %td
+    = link_to 'Editar', edit_users_project_path(project)
+    = link_to 'Eliminar', users_project_path(project), method: :delete
