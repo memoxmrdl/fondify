@@ -21,6 +21,20 @@ class Users::ProjectsController < Users::BaseController
     end
   end
 
+  def edit
+    @project = current_user.projects.find(params[:id])
+  end
+
+  def update
+    @project = current_user.projects.find(params[:id])
+
+    if @project.update(project_params)
+      redirect_to users_projects_path, notice: t('.notice')
+    else
+      render :edit
+    end
+  end
+
   private
 
   def project_params
