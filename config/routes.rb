@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   namespace :admins do
     resources :projects do
       resource :take, only: :create, controller: 'projects/take'
+      resource :accept, only: :create, controller: 'projects/accept'
       resources :notifications, only: :create, controller: 'projects/notifications'
     end
   end

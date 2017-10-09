@@ -1,6 +1,8 @@
 %h2 Project
 
 - if @project.admin.present?
+  %p= link_to 'Aceptar proyecto', admins_project_accept_path(@project), method: :create
+
   %p= @project.title
   %p= @project.short_description
   %p= @project.description
