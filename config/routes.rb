@@ -1,12 +1,5 @@
 Rails.application.routes.draw do
   devise_for :admins, skip: [:passwords, :confirmations, :registrations, :omniauth_callbacks]
-  devise_for :users
-
-  root 'home#index'
-
-  namespace :users do
-    resources :projects
-  end
 
   namespace :admins do
     resources :projects do
@@ -15,4 +8,13 @@ Rails.application.routes.draw do
       resources :notifications, only: :create, controller: 'projects/notifications'
     end
   end
+
+  devise_for :users
+
+  namespace :users do
+    resources :projects
+  end
+
+  root 'home#index'
+  resources :projects, only: [:index, :show]
 end
