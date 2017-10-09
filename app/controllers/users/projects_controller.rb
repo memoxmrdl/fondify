@@ -35,6 +35,14 @@ class Users::ProjectsController < Users::BaseController
     end
   end
 
+  def destroy
+    @project = current_user.projects.find(params[:id])
+
+    @project.destroy
+
+    redirect_to users_projects_path, notice: t('.notice')
+  end
+
   private
 
   def project_params
