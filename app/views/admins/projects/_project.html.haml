@@ -1,5 +1,5 @@
 %tr
-  %td= project.id
+  %td= link_to project.id, admins_project_path(project)
   %td= project.title
   %td= project.short_description
   %td= project.description

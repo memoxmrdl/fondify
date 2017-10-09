@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   end
 
   namespace :admins do
-    resources :projects
+    resources :projects do
+      resource :take, only: :create, controller: 'projects/take'
+    end
   end
 end

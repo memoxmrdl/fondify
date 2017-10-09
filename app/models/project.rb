@@ -4,6 +4,7 @@ class Project < ActiveRecord::Base
   IMAGE_DEFAULT_STYLES = { thumb: '64x64#', small: '470x470#' }
 
   belongs_to :user
+  belongs_to :admin
 
   validates :title,
             :description,
@@ -15,6 +16,8 @@ class Project < ActiveRecord::Base
   validates_attachment_presence :image
   validates_attachment_size :image, less_than: 0..2024.kilobytes
   validates_attachment_content_type :image, content_type: %w(image/jpeg image/jpg image/png)
+
+  scope :without_admin, -> { where(admin: nil) }
 
   def paperclip_set_default_url
     ActionController::Base.helpers.asset_url('missing.png')

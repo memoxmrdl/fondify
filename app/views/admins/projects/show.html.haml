@@ -1,1 +1,8 @@
 %h2 Project
+
+- if @project.admin.present?
+  %p= @project.title
+  %p= @project.short_description
+  %p= @project.description
+- else
+  = link_to 'Moderar este proyecto', admins_project_take_path(@project), method: :create
