@@ -1,0 +1,24 @@
+- if @project.admin.present?
+  .row
+    .col-lg-12.col-md-12.col-sm-12.mb-20
+      = link_to 'Aceptar proyecto', admins_project_accept_path(@project), method: :create, class: 'btn btn-success', data: { confirm: '¿Desea aceptar este proyecto?' }
+      = link_to 'Editar', edit_admins_project_path(@project), class: 'btn btn-primary'
+      = link_to 'Eliminar', admins_project_path(@project), method: :delete, class: 'btn btn-danger', data: { confirm: '¿Desea eliminar este proyecto?' }
+  .row
+    .col-lg-4.col-md-4.col-sm-12
+      = image_tag @project.image.url, class: 'img-responsive'
+    .col-lg-8.col-md-8.col-sm-12
+      = project_status_label(@project)
+      %h1= @project.title
+      %h3= @project.short_description
+      %p= simple_format @project.description
+  .row
+    .col-lg-4.col-md-4.col-sm-12
+      %h4 Dejar un comentario
+      = simple_form_for [:admins, @project, Notification.new] do |f|
+        = f.input :message
+        = f.button :submit, class: 'btn btn-primary btn-block'
+- else
+  .row
+    .col-lg-12.col-md-12.col-sm-12
+      = link_to 'Moderar este proyecto', admins_project_take_path(@project), method: :create, class: 'btn btn-primary'

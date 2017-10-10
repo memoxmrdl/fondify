@@ -1,0 +1,12 @@
+.row
+  .col-lg-12.col-md-12.col-sm-12
+    %h3 Todos los proyectos
+- unless @projects.blank?
+  - @projects.in_groups_of(4, false) do |group|
+    .row= render group
+  .row
+    .col-lg-12.col-md-12.col-sm-12= paginate @projects
+- else
+  .row
+    .col-lg-12.col-md-12.col-sm-12
+      %p Ninguno por ahora

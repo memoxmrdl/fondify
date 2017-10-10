@@ -1,0 +1,10 @@
+%tr
+  %td= link_to project.id, admins_project_path(project)
+  %td= project.title
+  %td= project.short_description
+  %td= project.description
+  %td= project_status_label project
+  %td
+    = link_to 'Ver', admins_project_path(project), class: 'btn btn-primary'
+    = link_to 'Editar', edit_admins_project_path(project), class: 'btn btn-primary'
+    = link_to 'Eliminar', admins_project_path(project), method: :delete, class: 'btn btn-danger', data: { confirm: '¿Desea eliminar este proyecto?' }

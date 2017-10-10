@@ -1,0 +1,8 @@
+= simple_form_for [:admins, @project] do |f|
+  = f.input :title
+  = f.input :short_description
+  = f.input :description
+  - if @project&.persisted?
+    .form-group= image_tag @project.image.url(:small), class: 'img-responsive', size: '128x128'
+  = f.input :image
+  = f.button :submit, class: 'btn btn-primary btn-block'

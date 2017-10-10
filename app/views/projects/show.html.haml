@@ -1,0 +1,7 @@
+.row
+  .col-lg-4.col-md-4.col-sm-12
+    = image_tag @project.image.url, class: 'img-responsive'
+  .col-lg-8.col-md-8.col-sm-12
+    %h1= @project.title
+    %h3= @project.short_description
+    %p= simple_format @project.description

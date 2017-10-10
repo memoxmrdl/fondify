@@ -1,0 +1,15 @@
+.jumbotron
+  %h2 Ayuda o fondéa
+  %p Ayuda a cumplir el sueños de cada unos de nuestros proyectos o recibe la ayuda para cumplir ese sueño
+  %p= link_to 'Comenzar', new_users_project_path, class: 'btn btn-lg btn-primary'
+
+.row
+  .col-lg-12.col-md-12.col-sm-12
+    %h3 Proyectos recientes
+- unless @current_projects.blank?
+  - @current_projects.in_groups_of(4, false) do |group|
+    .row= render partial: 'home/project', collection: group
+- else
+  .row
+    .col-lg-12.col-md-12.col-sm-12
+      %p Ninguno por ahora

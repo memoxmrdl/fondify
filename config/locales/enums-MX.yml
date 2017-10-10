@@ -1,0 +1,6 @@
+es-MX:
+  enums:
+    project_status:
+      wait_comments: Espera observaciones
+      with_comments: Con comentarios
+      accepted: Aceptado

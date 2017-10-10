@@ -1,0 +1,12 @@
+.col-lg-3.col-md-3.col-sm-12.project
+  .thumbnail
+    = link_to users_project_path(project) do
+      = image_tag(project.image.url(:small), class: 'img-responsive')
+    .caption
+      = project_status_label(project)
+      %h3= project.title
+      %p= project.short_description
+      %p= truncate project.description, length: 200
+      %p
+        = link_to 'Editar', edit_users_project_path(project), class: 'btn btn-primary'
+        = link_to 'Eliminar', users_project_path(project), method: :delete, class: 'btn btn-danger', data: { confirm: '¿Désea eliminar este proyecto?' }

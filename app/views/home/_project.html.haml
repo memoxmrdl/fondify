@@ -1,0 +1,9 @@
+.col-lg-3.col-md-3.col-sm-12.project
+  .thumbnail
+    = image_tag(project.image.url(:small), class: 'img-responsive')
+    .caption
+      %h3= project.title
+      %p= project.short_description
+      %p= truncate project.description, length: 200
+      %p
+        = link_to 'Ver más', project_path(project), class: 'btn btn-primary'
