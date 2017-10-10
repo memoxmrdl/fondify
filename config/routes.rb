@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  devise_for :admins, skip: [:passwords, :confirmations, :registrations, :omniauth_callbacks]
+  devise_for :admins, skip: [:passwords, :confirmations, :registrations, :omniauth_callbacks], controllers: {
+    sessions: 'admins/sessions'
+  }
 
   namespace :admins do
     resources :projects do

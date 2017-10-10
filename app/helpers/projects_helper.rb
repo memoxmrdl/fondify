@@ -1,15 +1,15 @@
 module ProjectsHelper
   def project_status_label(project)
-    content_tag(:div, project.status_human, class: "label #{project_status_label_type(project)}")
+    content_tag(:div, project.status_human, class: "label label-#{project_status_type(project)}")
   end
 
-  def project_status_label_type(project)
+  def project_status_type(project)
     if project.wait_comments?
-      'label-default'
+      'default'
     elsif project.with_comments?
-      'label-warning'
+      'warning'
     elsif project.accepted?
-      'label-success'
+      'success'
     end
   end
 end

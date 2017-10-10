@@ -6,11 +6,23 @@ es-MX:
         short_description: Pequeña descripción
         description: Descripción
         image: Imagén
+      user:
+        name: Nombre
+        last_name: Apellidos
+        email: Correo electroníco
+        password: Contraseña
+      admin:
+        email: Correo electroníco
+        password: Contraseña
+      notification:
+        message: Comentario
   helpers:
     submit:
       project:
         create: Guardar
         update: Actualizar
+      notification:
+        create: Guardar
   views:
     pagination:
       first: "&laquo; Primer"
