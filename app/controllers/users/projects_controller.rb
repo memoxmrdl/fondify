@@ -1,7 +1,7 @@
 class Users::ProjectsController < Users::BaseController
   before_action :find_project, except: [:index, :new, :create]
 
-  PER_PAGE_SIZE = 2
+  PER_PAGE_SIZE = 12
 
   def index
     @projects = current_user.projects.page(params[:page]).per(PER_PAGE_SIZE)

@@ -3,6 +3,8 @@ class Project < ActiveRecord::Base
 
   IMAGE_DEFAULT_STYLES = { thumb: '64x64#', small: '470x470#' }
 
+  attr_accessor :admin_changes
+
   has_many :notifications
   belongs_to :user
   belongs_to :admin
@@ -20,7 +22,7 @@ class Project < ActiveRecord::Base
 
   scope :without_admin, -> { where(admin: nil) }
 
-  before_update :updates, if: :project_attrs_changed?
+  before_update :updates, if: [:admin_changes!, :project_attrs_changed?]
 
   def paperclip_set_default_url
     ActionController::Base.helpers.asset_url('missing.png')
@@ -28,6 +30,10 @@ class Project < ActiveRecord::Base
 
   def status_human
     I18n.t("enums.project_status.#{status}")
+  end
+
+  def admin_changes!
+    !admin_changes
   end
 
   enum status: {

@@ -12,7 +12,7 @@ class Admins::ProjectsController < Admins::BaseController
   end
 
   def update
-    if @project.update(project_params)
+    if @project.update(project_params.merge(admin_changes: true))
       redirect_to admins_projects_path, notice: t('.notice')
     else
       render :edit
