@@ -1,0 +1,13 @@
+es-MX:
+  activerecord:
+    attributes:
+      project:
+        title: Título
+        short_description: Pequeña descripción
+        description: Descripción
+        image: Imagén
+  helpers:
+    submit:
+      project:
+        create: Guardar
+        update: Actualizar
