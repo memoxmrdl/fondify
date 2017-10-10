@@ -16,8 +16,11 @@ gem 'simple_form'
 gem 'paperclip', '~> 5.0.0'
 gem 'aasm'
 gem 'bootstrap-sass'
+gem 'devise-bootstrap-views'
 gem 'kaminari'
 gem 'puma'
+gem 'rails-i18n', '~> 4.0.0'
+gem 'devise-i18n'
 
 group :development, :test do
   gem 'byebug'
