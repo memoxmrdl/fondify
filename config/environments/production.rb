@@ -64,6 +64,17 @@ Rails.application.configure do
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
 
+  # Paperclip Fog Gcloud Storage
+  config.paperclip_defaults = {
+    :storage => :fog,
+    :fog_credentials => {
+      :provider => "Google",
+      :google_storage_access_key_id => ENV['GSTORAGE_ACCESS_KEY_ID'],
+      :google_storage_secret_access_key => ENV['GSTORAGE_SECRET_ACCESS_KEY']
+    },
+    :fog_directory => ENV['GSTORAGE_BUCKET']
+  }
+
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
   config.i18n.fallbacks = true
