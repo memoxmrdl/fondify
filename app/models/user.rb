@@ -3,4 +3,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :projects
+
+  validates :name,
+            :last_name, presence: true
 end
