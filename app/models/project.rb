@@ -26,6 +26,10 @@ class Project < ActiveRecord::Base
     ActionController::Base.helpers.asset_url('missing.png')
   end
 
+  def status_human
+    I18n.t("enums.project_status.#{status}")
+  end
+
   enum status: {
     wait_comments: 1,
     with_comments: 2,

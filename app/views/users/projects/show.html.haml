@@ -1,5 +1,12 @@
-%h2 Project
-
-- @notifications.each do |notification|
-  .notifications
-    %p= notification.message
+.row
+  .col-lg-12.col-md-12.col-sm-12.mb-20
+    = link_to 'Editar', edit_users_project_path(@project), class: 'btn btn-primary'
+    = link_to 'Eliminar', users_project_path(@project), method: :delete, class: 'btn btn-danger', data: { confirm: '¿Désea eliminar este proyecto?' }
+.row
+  .col-lg-4.col-md-4.col-sm-12
+    = image_tag @project.image.url, class: 'img-responsive'
+  .col-lg-8.col-md-8.col-sm-12
+    = project_status_label(@project)
+    %h1= @project.title
+    %h3= @project.short_description
+    %p= simple_format @project.description
