@@ -1,5 +1,5 @@
 class Project < ActiveRecord::Base
-  include AASM
+  include ProjectStatusMachine
 
   IMAGE_DEFAULT_STYLES = { thumb: '64x64#', small: '470x470#' }
 
@@ -20,7 +20,7 @@ class Project < ActiveRecord::Base
   validates_attachment_size :image, less_than: 0..2024.kilobytes
   validates_attachment_content_type :image, content_type: %w(image/jpeg image/jpg image/png)
 
-  scope :without_admin, -> { where(admin: nil) }
+  scope :without_admin, -> { where(admin_id: nil) }
 
   before_update :updates, if: [:admin_changes!, :project_attrs_changed?]
 
@@ -34,33 +34,6 @@ class Project < ActiveRecord::Base
 
   def admin_changes!
     !admin_changes
-  end
-
-  enum status: {
-    wait_comments: 1,
-    with_comments: 2,
-    accepted: 3
-  }
-
-  aasm column: :status, enum: true do
-    state :wait_comments, initial: true
-    state :with_comments, :accepted
-
-    event :accept do
-      transitions from: :wait_comments,
-                  to: :accepted
-    end
-
-    event :not_accept do
-      transitions from: :wait_comments,
-                  to: :with_comments
-    end
-
-    event :updates do
-      transitions from: [:wait_comments, :with_comments, :accepted],
-                  to: :wait_comments,
-                  after: :update_notifications!
-    end
   end
 
   private
