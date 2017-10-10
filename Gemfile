@@ -21,6 +21,7 @@ gem 'kaminari'
 gem 'puma'
 gem 'rails-i18n', '~> 4.0.0'
 gem 'devise-i18n'
+gem 'fog'
 
 group :development, :test do
   gem 'byebug'
