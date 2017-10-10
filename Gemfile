@@ -17,6 +17,7 @@ gem 'paperclip', '~> 5.0.0'
 gem 'aasm'
 gem 'bootstrap-sass'
 gem 'kaminari'
+gem 'puma'
 
 group :development, :test do
   gem 'byebug'

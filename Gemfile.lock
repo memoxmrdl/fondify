@@ -153,6 +153,7 @@ GEM
     pry-rails (0.3.6)
       pry (>= 0.10.4)
     public_suffix (2.0.5)
+    puma (3.8.2)
     rack (1.6.8)
     rack-contrib (1.4.0)
       git-version-bump (~> 0.15)
@@ -258,6 +259,7 @@ DEPENDENCIES
   pg (= 0.20.0)
   pry
   pry-rails
+  puma
   rails (= 4.2.10)
   sass-rails (~> 5.0)
   simple_form
