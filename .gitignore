@@ -12,5 +12,5 @@
 !/log/.keep
 /tmp
 
-config/database.yml.example
+config/database.yml
 public/system/*

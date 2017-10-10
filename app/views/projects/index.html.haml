@@ -1,8 +1,10 @@
-.projects
-  %h2 Projects
-  %table
-    %thead
-      %th Title
-      %th Short description
-      %th description
-    %tbody= render @projects
+.row
+  .col-lg-12.col-md-12.col-sm-12
+    %h3 Todos los proyectos
+- unless @projects.blank?
+  - @projects.in_groups_of(4, false) do |group|
+    .row= render group
+- else
+  .row
+    .col-lg-12.col-md-12.col-sm-12
+      %p Ninguno por ahora

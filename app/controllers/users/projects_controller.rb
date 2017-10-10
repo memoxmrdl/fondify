@@ -1,5 +1,5 @@
 class Users::ProjectsController < Users::BaseController
-  before_action :find_project, except: [:index, :new]
+  before_action :find_project, except: [:index, :new, :create]
 
   def index
     @projects = current_user.projects
